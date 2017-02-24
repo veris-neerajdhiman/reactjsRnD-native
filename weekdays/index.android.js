@@ -1,45 +1,22 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
+import React, {Component} from 'react';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware, combineReducers, compose } from 'redux';
+import configureStore from './src/store/configureStore';
+import AppContainer from './src/containers/AppContainer';
 
-import React, { Component } from 'react';
 import {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View
+    AppRegistry,
 } from 'react-native';
 
-import CounterComponent from './src/components/CounterComponent';
-import TODOAppComponent from './src/components/ToDoAppComponent';
+const store = configureStore({});
 
-export default class weekdays extends Component {
-  render() {
-    return (
-      <TODOAppComponent/>
-    );
-  }
-}
+const App = () => (
+    <Provider store={store}>
+        <AppContainer />
+    </Provider>
+);
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
+AppRegistry.registerComponent('weekdays', () => App);
 
-AppRegistry.registerComponent('weekdays', () => weekdays);
+// tutorial link
+// https://www.youtube.com/watch?v=WrDwSRu8oz8&list=PLk083BmAphjtGWyZUuo1BiCS_ZAgps6j5&index=3
